@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:16
+    container_name: django_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: myblog
+      POSTGRES_USER: myblog_user
+      POSTGRES_PASSWORD: myblog_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
