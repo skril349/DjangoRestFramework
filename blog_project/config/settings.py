@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 
-from my_blog.config.settings import STATIC_ROOT
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
