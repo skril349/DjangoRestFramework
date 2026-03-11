@@ -1,12 +1,15 @@
 from rest_framework import viewsets
 from comments.models import Comment
 from .serializers import CommentSerializer
-from rest_framework.filters import  OrderingFilter
-#from posts.api.permissions import IsAdminOrReadOnly
+from rest_framework.filters import OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
+from comments.api.permissions import IsOwnerOrReadOnly
 
 class CommentApiViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsOwnerOrReadOnly]
     serializer_class = CommentSerializer
     queryset = Comment.objects.all()
-    filter_backends = [OrderingFilter]
+    filter_backends = [OrderingFilter, DjangoFilterBackend]
     ordering_fields = ['created_at']
-    #permission_classes = [IsAdminOrReadOnly]
+    filterset_fields = ['post']
+    
