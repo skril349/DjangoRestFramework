@@ -23,7 +23,7 @@ from drf_yasg import openapi
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 from categories.api.router import router_categories
 from posts.api.router import router_posts
-
+from comments.api.router import router_comment
 schema_view = get_schema_view(
    openapi.Info(
       title="Blog Api",
@@ -46,4 +46,5 @@ urlpatterns = [
     path('api/auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/', include(router_categories.urls)),
     path('api/', include(router_posts.urls)),
+    path('api/', include(router_comment.urls)),
 ]
